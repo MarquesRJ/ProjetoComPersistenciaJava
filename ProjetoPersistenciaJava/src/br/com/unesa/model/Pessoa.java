@@ -1,5 +1,7 @@
 package br.com.unesa.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -7,8 +9,10 @@ package br.com.unesa.model;
  * @author Gabriel Henrique Santos Marques
  * @author Marlon Ribeiro da Silva
  */
+@Entity
 public class Pessoa {
 
+    @Id
     private int id;
     private String nome;
     private String idade;
