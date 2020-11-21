@@ -1,35 +1,49 @@
 package br.com.unesa.model;
 
-import java.util.Date;
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
+/**
+ * @author Jonas Silva Carvalho<jonasloop1@gmail.com>
+ * @author Gabriel Henrique Santos Marques<gabrielmarques142@gmail.com>
+ * @author Marlon Ribeiro da Silva<marlonribeirodasilva@outlook.com.br>
+ * @brief Classe mãe.
+ * @date 20/11/2020.
+ */
 
 @Entity
-public class Pessoa {
+@Table
+@Inheritance( strategy = InheritanceType.SINGLE_TABLE )
+@DiscriminatorColumn( name="Pessoa" )
+public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
     @Column(nullable = false)
     private String nome;
-    private String turno;
     private String idade;
-    private String email;
     private String cpf;
+    private String email;
+    private String turno;
+    
+    public Pessoa(){}
 
-    public Pessoa(Long id, String nome, String turno, String idade, String email, String cpf) {
+    public Pessoa(Long id, String nome, String idade, String cpf, String email, String turno) {
         this.id = id;
         this.nome = nome;
-        this.turno = turno;
-        this.idade = idade;
+        this.turno = idade;
+        this.idade = cpf;
         this.email = email;
-        this.cpf = cpf;
+        this.cpf = turno;
     }
 
     public Long getId() {
@@ -48,28 +62,12 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getTurno() {
-        return turno;
-    }
-
-    public void setTurno(String turno) {
-        this.turno = turno;
-    }
-
     public String getIdade() {
         return idade;
     }
 
     public void setIdade(String idade) {
         this.idade = idade;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getCpf() {
@@ -80,4 +78,20 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTurno() {
+        return turno;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
+    
 }
