@@ -1,6 +1,5 @@
 package br.com.unesa.model;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -12,7 +11,6 @@ import javax.persistence.Persistence;
  * @brief Classe que faz a persistencia com banco.
  * @date 20/11/2020.
  */
-
 public class PessoaDAO {
 
     private EntityManager getEntityManager() {
@@ -21,13 +19,16 @@ public class PessoaDAO {
         try {
             factory = Persistence.createEntityManagerFactory("PJPU");
             entityManager = factory.createEntityManager();
+        } catch (Exception ex) {
+            System.out.println("ERRO DE EXCEÇÃO");
+
         } finally {
             factory.close();
         }
         return entityManager;
     }
 
-    public Pessoa inserir(Pessoa pessoa){
+    public Pessoa inserir(Pessoa pessoa) {
         EntityManager entityManager = getEntityManager();
 
         try {
@@ -39,6 +40,8 @@ public class PessoaDAO {
                 pessoa = entityManager.merge(pessoa);
             }
             entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            System.out.println("ERRO DE EXCEÇÃO");
         } finally {
             entityManager.close();
         }
@@ -53,6 +56,8 @@ public class PessoaDAO {
             System.out.println("Excluindo os dados de: " + pessoa.getNome());
             entityManager.remove(pessoa);
             entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            System.out.println("ERRO DE EXCEÇÃO");
         } finally {
             entityManager.close();
         }
@@ -63,6 +68,8 @@ public class PessoaDAO {
         Pessoa pessoa = null;
         try {
             pessoa = entityManager.find(Pessoa.class, id);
+        } catch (Exception ex) {
+            System.out.println("ERRO DE EXCEÇÃO");
         } finally {
             entityManager.close();
         }

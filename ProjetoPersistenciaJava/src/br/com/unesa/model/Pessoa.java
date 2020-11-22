@@ -93,5 +93,9 @@ public class Pessoa implements Serializable {
     public void setTurno(String turno) {
         this.turno = turno;
     }
+
+    public void set(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

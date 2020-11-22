@@ -10,27 +10,27 @@ import javax.persistence.Entity;
  * @brief Classe filha professor, herda tudo de Pessoa.
  * @date 20/11/2020.
  */
-
 @Entity
-@DiscriminatorValue( value="Professor" )
+@DiscriminatorValue(value = "Professor")
 
 public class Professor extends Pessoa {
-    
-    public Professor(){}
+
+    public Professor() {
+    }
 
     public Professor(long id, String nome, String idade, String cpf, String email, String turno) {
         super(id, nome, idade, cpf, email, turno);
 
     }
-    private float salario;
+    private String salario;
     private String disciplina;
-    private int turma;
+    private String turma;
 
-    public float getSalario() {
+    public String getSalario() {
         return salario;
     }
 
-    public void setSalario(float salario) {
+    public void setSalario(String salario) {
         this.salario = salario;
     }
 
@@ -42,11 +42,11 @@ public class Professor extends Pessoa {
         this.disciplina = disciplina;
     }
 
-    public int getTurma() {
+    public String getTurma() {
         return turma;
     }
 
-    public void setTurma(int turma) {
+    public void setTurma(String turma) {
         this.turma = turma;
     }
 
