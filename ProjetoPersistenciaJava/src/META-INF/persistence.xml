@@ -3,8 +3,10 @@
   <persistence-unit name="PJPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <class>br.com.unesa.model.Pessoa</class>
+    <class>br.com.unesa.model.Aluno</class>
+    <class>br.com.unesa.model.Professor</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/GJM"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/BDJPA"/>
       <property name="javax.persistence.jdbc.user" value="GJM"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="GJM"/>
