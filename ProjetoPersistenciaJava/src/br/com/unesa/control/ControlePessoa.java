@@ -19,11 +19,11 @@ public class ControlePessoa {
         DAO.inserir(pessoa);
     }
 
-    public void excluir(long id) {
+    public void excluir(Long id) {
         DAO.excluir(id);
     }
 
-    public void consultarPorId(long id) {
+    public void consultarPorId(Long id) {
         DAO.consultarPorId(id);
     }
 }

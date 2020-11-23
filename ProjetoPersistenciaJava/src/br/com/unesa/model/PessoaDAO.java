@@ -3,6 +3,7 @@ package br.com.unesa.model;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import br.com.unesa.control.ControlePessoa;
 
 /**
  * @author Jonas Silva Carvalho<jonasloop1@gmail.com>
@@ -33,27 +34,24 @@ public class PessoaDAO {
 
         try {
             entityManager.getTransaction().begin();
-            System.out.println("Salvando a pessoa.");
+
             if (pessoa.getId() == null) {
                 entityManager.persist(pessoa);
             } else {
                 pessoa = entityManager.merge(pessoa);
             }
             entityManager.getTransaction().commit();
-        } catch (Exception ex) {
-            System.out.println("ERRO DE EXCEÇÃO");
         } finally {
             entityManager.close();
         }
         return pessoa;
     }
 
-    public void excluir(long id) {
+    public void excluir(Long id) {
         EntityManager entityManager = getEntityManager();
         try {
             entityManager.getTransaction().begin();
             Pessoa pessoa = entityManager.find(Pessoa.class, id);
-            System.out.println("Excluindo os dados de: " + pessoa.getNome());
             entityManager.remove(pessoa);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
@@ -63,7 +61,7 @@ public class PessoaDAO {
         }
     }
 
-    public Pessoa consultarPorId(long id) {
+    public Pessoa consultarPorId(Long id) {
         EntityManager entityManager = getEntityManager();
         Pessoa pessoa = null;
         try {

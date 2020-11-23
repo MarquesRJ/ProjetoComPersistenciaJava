@@ -5,9 +5,11 @@
  */
 package br.com.unesa.view;
 
+import javax.persistence.EntityManagerFactory;
 import br.com.unesa.control.ControlePessoa;
 import br.com.unesa.model.Pessoa;
 import br.com.unesa.model.Professor;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -111,6 +113,11 @@ public class Interface extends javax.swing.JFrame {
         });
 
         ButtonExcluirProfessor.setText("Excluir");
+        ButtonExcluirProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonExcluirProfessorActionPerformed(evt);
+            }
+        });
 
         ButtonConsultarIdAluno.setText("Consultar ID");
 
@@ -121,6 +128,11 @@ public class Interface extends javax.swing.JFrame {
         ButtonExcluirAluno.setText("Excluir");
 
         ButtonColsutarIdProfessor.setText("Consultar ID");
+        ButtonColsutarIdProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonColsutarIdProfessorActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nome:");
 
@@ -347,12 +359,12 @@ public class Interface extends javax.swing.JFrame {
 
     private void ButtonCadastrarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarProfessorActionPerformed
 
-        pessoa.setNome(CaixaNomeProfessor.getText());
+        professor.setNome(CaixaNomeProfessor.getText());
         pessoa.setCpf(CaixaCpfProfessor.getText());
         pessoa.setIdade(CaixaIdadeProfessor.getText());
         pessoa.setEmail(CaixaEmailProfessor.getText());
         pessoa.setTurno(CaixaTurnoProfessor.getText());
-        professor.set(CaixaMateriaProfessor.getText());
+        professor.setDisciplina(CaixaMateriaProfessor.getText());
         professor.setSalario(CaixaSalarioProfessor.getText());
         controle.inserir(pessoa);
 
@@ -369,10 +381,61 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonCadastrarProfessorActionPerformed
 
     private void ButtonEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEditarProfessorActionPerformed
-       
-        
-        
+
+        pessoa.setNome(CaixaNomeProfessor.getText());
+        pessoa.setCpf(CaixaCpfProfessor.getText());
+        pessoa.setIdade(CaixaIdadeProfessor.getText());
+        pessoa.setEmail(CaixaEmailProfessor.getText());
+        pessoa.setTurno(CaixaTurnoProfessor.getText());
+        professor.setDisciplina(CaixaMateriaProfessor.getText());
+        professor.setSalario(CaixaSalarioProfessor.getText());
+        controle.inserir(pessoa);
+
+        JOptionPane.showMessageDialog(rootPane, "Alteração feita com sucesso!");
+
+        CaixaNomeProfessor.setText("");
+        CaixaCpfProfessor.setText("");
+        CaixaIdadeProfessor.setText("");
+        CaixaEmailProfessor.setText("");
+        CaixaTurnoProfessor.setText("");
+        CaixaMateriaProfessor.setText("");
+        CaixaSalarioProfessor.setText("");
+
     }//GEN-LAST:event_ButtonEditarProfessorActionPerformed
+
+    private void ButtonExcluirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirProfessorActionPerformed
+
+        professor.setNome(CaixaNomeProfessor.getText());
+        professor.setCpf(CaixaCpfProfessor.getText());
+        professor.setIdade(CaixaIdadeProfessor.getText());
+        professor.setEmail(CaixaEmailProfessor.getText());
+        professor.setTurno(CaixaTurnoProfessor.getText());
+        professor.setDisciplina(CaixaMateriaProfessor.getText());
+        professor.setSalario(CaixaSalarioProfessor.getText());
+        controle.entityManager.remove(professor);
+
+
+    }//GEN-LAST:event_ButtonExcluirProfessorActionPerformed
+
+    private void ButtonColsutarIdProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonColsutarIdProfessorActionPerformed
+        /**
+         * Consulta o pessoa pelo ID.
+         *
+         * @param id
+         * @return o objeto Pessoa.
+         */
+
+        EntityManager entityManager = getEntityManager();
+        Pessoa pessoa = null;
+        try {
+
+            pessoa = entityManager.find(Pessoa.class, id);
+        } finally {
+            entityManager.close();
+        }
+
+
+    }//GEN-LAST:event_ButtonColsutarIdProfessorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,13 +454,17 @@ public class Interface extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interface.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interface.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interface.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interface.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

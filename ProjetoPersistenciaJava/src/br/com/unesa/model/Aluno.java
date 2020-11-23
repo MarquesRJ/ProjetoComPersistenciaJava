@@ -1,7 +1,7 @@
 package br.com.unesa.model;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  * @author Jonas Silva Carvalho<jonasloop1@gmail.com>
@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  */
 
 @Entity
-@DiscriminatorValue( value="Aluno" )
+@PrimaryKeyJoinColumn(referencedColumnName="id")
 public class Aluno extends Pessoa {
     
     public Aluno(){}

@@ -2,7 +2,6 @@ package br.com.unesa.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,14 +14,13 @@ import javax.persistence.Table;
  * @author Jonas Silva Carvalho<jonasloop1@gmail.com>
  * @author Gabriel Henrique Santos Marques<gabrielmarques142@gmail.com>
  * @author Marlon Ribeiro da Silva<marlonribeirodasilva@outlook.com.br>
- * @brief Classe mãe.
+ * @brief Classe mãe..
  * @date 20/11/2020.
  */
-
 @Entity
 @Table
-@Inheritance( strategy = InheritanceType.SINGLE_TABLE )
-@DiscriminatorColumn( name="Pessoa" )
+@Inheritance(strategy = InheritanceType.JOINED)
+
 public class Pessoa implements Serializable {
 
     @Id
@@ -30,20 +28,25 @@ public class Pessoa implements Serializable {
     private long id;
     @Column(nullable = false)
     private String nome;
+    @Column
     private String idade;
+    @Column
     private String cpf;
+    @Column
     private String email;
+    @Column
     private String turno;
-    
-    public Pessoa(){}
 
-    public Pessoa(Long id, String nome, String idade, String cpf, String email, String turno) {
+    public Pessoa() {
+    }
+
+    public Pessoa(long id, String nome, String idade, String cpf, String email, String turno) {
         this.id = id;
         this.nome = nome;
         this.turno = idade;
         this.idade = cpf;
         this.email = email;
-        this.cpf = turno;
+        this.cpf = turnoooo;
     }
 
     public Long getId() {
@@ -94,8 +97,4 @@ public class Pessoa implements Serializable {
         this.turno = turno;
     }
 
-    public void set(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
